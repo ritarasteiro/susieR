@@ -185,12 +185,14 @@
 #' print(fit$pip)
 #'
 #' @export
+#' @importClassesFrom gwasglue2 DataSet
+#' @importFrom gwasglue2 DataSet
 #'
 susie_rss = function (z, R, n, bhat, shat, var_y,
                       z_ld_weight = 0,
                       estimate_residual_variance = FALSE,
                       prior_variance = 50,
-                      check_prior = TRUE, ...) {
+                      check_prior = TRUE,  summaryset=NULL, ...) {
 
   if (estimate_residual_variance)
     warning_message("For estimate_residual_variance = TRUE, please check ",
@@ -201,7 +203,12 @@ susie_rss = function (z, R, n, bhat, shat, var_y,
                     "the univariate regressions that produced the summary ",
                     "statistics, also consider removing these effects from ",
                     "X before computing R.",style = "hint")
-
+if(!is.null(summaryset))
+  {
+    bhat <- summaryset@ss$beta
+    shat <- summaryset@ss$se
+  }
+  
   # Check input R.
   if (missing(z))
     p <- length(bhat)
@@ -286,6 +293,49 @@ susie_rss = function (z, R, n, bhat, shat, var_y,
                         estimate_residual_variance = estimate_residual_variance,
                         check_prior = check_prior,...)
   }
+
+if(!is.null(summaryset))
+    {
+      lbf_to_z_cont <- function(lbf, n, af, prior_v=50){
+          se = sqrt(1 / (2 * n * af * (1-af)))
+          r = prior_v / (prior_v + se^2)
+          z = sqrt((2 * lbf - log(sqrt(1-r)))/r)
+          beta <- z * se
+          return(cbind(lbf, af, z, beta, se))
+    }     
+
+
+
+      create_summary_set_from_lbf <- function(summaryset, lbf, L){
+        n <- summaryset@ss$n
+        af <- summaryset@ss$eaf
+        
+        lbf_conv <- lbf_to_z_cont(lbf, n, af)
+        
+        # replace the beta and se columns in summaryset
+        summaryset@ss$beta <- bf_conv$beta
+        summaryset@ss$se <-bf_conv$se
+
+      
+        # update metadata to explain which credible set this is
+        summaryset@metadata$id <- paste0(summaryset@metadata$id, "_L",i)
+        # - trait name?
+        # - id?
+        # - notes?
+      }
+
+      ncredible_sets <- length(s$sets$cs)
+      ds <- gwasglue2::DataSet()
+      for(i in 1:ncredible_sets)
+      {
+        ds[[i]] <- create_summary_set_from_lbf(summaryset, s$lbf_variable[i,], L = i)
+      }
+
+      # ds@attributes <- s
+      s <- ds
+    }
+
+
   return(s)
 }
 

@@ -47,8 +47,10 @@ Suggests:
     L0Learn,
     Rfast,
     cowplot
+    gwasglue2
+Remotes: mrcieu/gwasglue2@finemap_coloc
 LazyData: yes
 LazyDataCompression: xz
 NeedsCompilation: no
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 VignetteBuilder: knitr
