@@ -318,7 +318,7 @@ if(!is.null(summaryset))
 
       
         # update metadata to explain which credible set this is
-        summaryset@metadata$id <- paste0(summaryset@metadata$id, "_L",i)
+        summaryset@metadata$id <- paste0(summaryset@metadata$id, "_L",L)
         # - trait name?
         # - id?
         # - notes?
