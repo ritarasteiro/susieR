@@ -186,7 +186,7 @@
 #'
 #' @export
 #'
-susie_rss = function (z, R, n, bhat, shat, var_y,
+susie_rss = function (z, R, n, bhat = NULL, shat = NULL, var_y,
                       z_ld_weight = 0,
                       estimate_residual_variance = FALSE,
                       prior_variance = 50,
@@ -201,11 +201,12 @@ susie_rss = function (z, R, n, bhat, shat, var_y,
                     "the univariate regressions that produced the summary ",
                     "statistics, also consider removing these effects from ",
                     "X before computing R.",style = "hint")
-if(!is.null(summaryset)){
-    message("susieR is using gwasglue2 SummarySet class as input")
-    bhat <- summaryset@ss$beta
-    shat <- summaryset@ss$se
-  }
+  
+  if(!is.null(summaryset)){
+      message("susieR is using gwasglue2 SummarySet class object as input")
+      bhat <- summaryset@ss$beta
+      shat <- summaryset@ss$se
+    }
   
   # Check input R.
   if (missing(z))
