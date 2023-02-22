@@ -190,7 +190,7 @@ susie_rss = function (z, R, n, bhat, shat, var_y,
                       z_ld_weight = 0,
                       estimate_residual_variance = FALSE,
                       prior_variance = 50,
-                      check_prior = TRUE,  summaryset=NULL, ...) {
+                      check_prior = TRUE,  summaryset = NULL, ...) {
 
   if (estimate_residual_variance)
     warning_message("For estimate_residual_variance = TRUE, please check ",
@@ -201,8 +201,7 @@ susie_rss = function (z, R, n, bhat, shat, var_y,
                     "the univariate regressions that produced the summary ",
                     "statistics, also consider removing these effects from ",
                     "X before computing R.",style = "hint")
-if(!is.null(summaryset))
-  {
+if(!is.null(summaryset)){
     message("susieR is using gwasglue2 SummarySet class as input")
     bhat <- summaryset@ss$beta
     shat <- summaryset@ss$se
