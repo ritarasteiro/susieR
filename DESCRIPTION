@@ -46,7 +46,7 @@ Suggests:
     rmarkdown,
     L0Learn,
     Rfast,
-    cowplot
+    cowplot,
     gwasglue2
 Remotes: mrcieu/gwasglue2@finemap_coloc
 LazyData: yes
