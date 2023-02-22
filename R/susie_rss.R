@@ -186,7 +186,7 @@
 #'
 #' @export
 #'
-susie_rss = function (z, R, n, bhat = NULL, shat = NULL, var_y,
+susie_rss = function (z, R , n, bhat = NULL, shat = NULL, var_y,
                       z_ld_weight = 0,
                       estimate_residual_variance = FALSE,
                       prior_variance = 50,
@@ -206,6 +206,7 @@ susie_rss = function (z, R, n, bhat = NULL, shat = NULL, var_y,
       message("susieR is using gwasglue2 SummarySet class object as input")
       bhat <- summaryset@ss$beta
       shat <- summaryset@ss$se
+      n <- unique(summaryset@ss$n)
     }
   
   # Check input R.
