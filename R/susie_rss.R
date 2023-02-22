@@ -185,8 +185,6 @@
 #' print(fit$pip)
 #'
 #' @export
-#' @importClassesFrom gwasglue2 DataSet
-#' @importFrom gwasglue2 DataSet
 #'
 susie_rss = function (z, R, n, bhat, shat, var_y,
                       z_ld_weight = 0,
