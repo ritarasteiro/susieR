@@ -186,7 +186,7 @@
 #'
 #' @export
 #'
-susie_rss = function (z, R , n, bhat = NULL, shat = NULL, var_y,
+susie_rss = function (z, R , n, bhat, shat, var_y,
                       z_ld_weight = 0,
                       estimate_residual_variance = FALSE,
                       prior_variance = 50,
@@ -313,8 +313,8 @@ if(!is.null(summaryset))
         lbf_conv <- lbf_to_z_cont(lbf, n, af)
         
         # replace the beta and se columns in summaryset
-        summaryset@ss$beta <- bf_conv$beta
-        summaryset@ss$se <-bf_conv$se
+        summaryset@ss$beta <- lbf_conv$beta
+        summaryset@ss$se <- lbf_conv$se
 
       
         # update metadata to explain which credible set this is
