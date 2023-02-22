@@ -205,6 +205,7 @@ susie_rss = function (z, R, n, bhat, shat, var_y,
                     "X before computing R.",style = "hint")
 if(!is.null(summaryset))
   {
+    message("susieR is using gwasglue2 SummarySet class as input")
     bhat <- summaryset@ss$beta
     shat <- summaryset@ss$se
   }
