@@ -208,7 +208,7 @@ susie_rss = function (z, R , n, bhat, shat, var_y,
       message("susieR is using gwasglue2 SummarySet class object as input")
       bhat <- summaryset@ss$beta
       shat <- summaryset@ss$se
-      n <- unique(summaryset@ss$n)
+      n <- summaryset@metadata$sample_size
     }
   
   # Check input R.
