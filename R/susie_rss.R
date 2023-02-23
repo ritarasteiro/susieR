@@ -305,7 +305,7 @@ susie_rss = function (z, R , n, bhat, shat, var_y,
     ds <- gwasglue2::DataSet()
       
     for(i in 1:ncredible_sets){
-      ds[[i]] <- gwasglue2::create_summary_set_from_lbf(summaryset, s$lbf_variable[,i], L = i)
+      ds@summary_sets[[i]] <- gwasglue2::create_summary_set_from_lbf(summaryset, s$lbf_variable[,i], L = i)
     }
 
     # ds@susieR <- s
