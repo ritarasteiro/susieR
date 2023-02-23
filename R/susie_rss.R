@@ -306,8 +306,9 @@ susie_rss = function (z, R , n, bhat, shat, var_y,
       
     for(i in 1:ncredible_sets){
       ds@summary_sets[[i]] <- gwasglue2::create_summary_set_from_lbf(summaryset, s$lbf_variable[,i], L = i)
+       ds@ld_matrices[[i]] <- R
     }
-
+   
     # ds@susieR <- s
     s <- ds
     }
