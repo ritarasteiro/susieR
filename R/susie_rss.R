@@ -102,6 +102,8 @@
 #' @param check_prior When \code{check_prior = TRUE}, it checks if the
 #'   estimated prior variance becomes unreasonably large (comparing with
 #'   100 * max(abs(z))^2).
+#' 
+#' @param summaryset gwasglue2 SummarySet object
 #'
 #' @param \dots Other parameters to be passed to
 #' \code{\link{susie_suff_stat}}.
@@ -298,7 +300,7 @@ susie_rss = function (z, R , n, bhat, shat, var_y,
     ncredible_sets <- length(s$sets$cs)
     if(ncredible_sets == 0){
       warning_message(paste0("There is no credible sets for this trait (",summaryset@metadata$id,"), with the parameter values used. The summary statistics beta and se will not be marginalised."))
-      next()
+
     } else{
     ds <- gwasglue2::DataSet()
       

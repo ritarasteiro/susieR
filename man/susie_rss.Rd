@@ -65,6 +65,8 @@ large initial value. Note this setting is only relevant when
 estimated prior variance becomes unreasonably large (comparing with
 100 * max(abs(z))^2).}
 
+\item{summaryset}{gwasglue2 SummarySet object}
+
 \item{\dots}{Other parameters to be passed to
 \code{\link{susie_suff_stat}}.}
 }
