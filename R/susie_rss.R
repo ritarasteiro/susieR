@@ -297,23 +297,8 @@ susie_rss = function (z, R , n, bhat, shat, var_y,
   }
 
   if(!is.null(summaryset)) {
-    ncredible_sets <- length(s$sets$cs)
-    if(ncredible_sets == 0){
-      warning_message(paste0("There is no credible sets for this trait (",summaryset@metadata$id,"), with the parameter values used. The summary statistics beta and se will not be marginalised."))
-
-    } else{
-    ds <- gwasglue2::DataSet()
-      
-    for(i in 1:ncredible_sets){
-      ds@summary_sets[[i]] <- gwasglue2::create_summary_set_from_lbf(summaryset, s$lbf_variable[,i], L = i)
-       ds@ld_matrices[[i]] <- R
-    }
-   
-    # ds@susieR <- s
-    s <- ds
-    }
-    
-    }
+   s <- gwasglue2::susie_to_dataset(summaryset, s, R)
+   }
   
   return(s)
 }
