@@ -48,7 +48,7 @@ Suggests:
     Rfast,
     cowplot,
     gwasglue2
-Remotes: mrcieu/gwasglue2@finemap_coloc
+Remotes: mrcieu/gwasglue2
 LazyData: yes
 LazyDataCompression: xz
 NeedsCompilation: no
